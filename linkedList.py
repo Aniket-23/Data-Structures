@@ -81,4 +81,19 @@ class LinkedList:
             print(f"{self.head.value} is popped")
             self.head = self.head.next
         self.length-=1
-    
+
+    def get(self, index):
+        if index <= 0 or index >= self.length:
+            print("Index out of bounds")
+            return
+        temp = self.head
+        for i in range(index):
+            temp = temp.next
+        print(f"Element at index {index} = {temp.value}")
+
+myLinkedList = LinkedList(1)
+myLinkedList.append(2)
+myLinkedList.append(3)
+myLinkedList.append(4)
+myLinkedList.append(5)
+myLinkedList.get(1)
