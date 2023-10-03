@@ -84,16 +84,23 @@ class LinkedList:
 
     def get(self, index):
         if index <= 0 or index >= self.length:
-            print("Index out of bounds")
-            return
+            return None
         temp = self.head
         for i in range(index):
             temp = temp.next
-        print(f"Element at index {index} = {temp.value}")
+        return temp
+
+    def set_value(self, index, value):
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
 
 myLinkedList = LinkedList(1)
 myLinkedList.append(2)
 myLinkedList.append(3)
 myLinkedList.append(4)
 myLinkedList.append(5)
-myLinkedList.get(1)
+myLinkedList.set_value(1, 10)
+myLinkedList.printList()
