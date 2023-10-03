@@ -66,18 +66,16 @@ class LinkedList:
             self.head = newNode
         self.length += 1
 
-    def popFirst(self):
+    def pop_first(self):
         if self.length == 0:
-            print("Linked list is empty")
-            return
-        elif self.length == 1:
-            print(f"{self.head.value} is popped")
-            self.head = None
+            return None
+        temp = self.head
+        self.head = self.head.next
+        temp.next = None
+        self.length -= 1
+        if self.length == 0:
             self.tail = None
-        else:
-            print(f"{self.head.value} is popped")
-            self.head = self.head.next
-        self.length-=1
+        return temp
 
     def get(self, index):
         if index < 0 or index >= self.length:
