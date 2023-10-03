@@ -105,21 +105,28 @@ class LinkedList:
         temp.next=newNode
         self.length+=1
         return True
+    
+    def remove(self, index):
+        if index<0 or index>=self.length:
+            return None
+        elif index==0:
+            return self.pop_first()
+        elif index==self.length-1:
+            return self.pop()
+        prev=self.get(index-1)
+        temp=prev.next
+        prev.next=temp.next
+        temp.next=None
+        self.length-=1
+        return temp
 
 myLinkedList = LinkedList(1)
 myLinkedList.append(3)
-
-print("Linked list before insertion:")
+myLinkedList.append(2)
+myLinkedList.append(4)
+myLinkedList.append(6)
+print("Linked list before removal: ")
 myLinkedList.printList()
-myLinkedList.insert(1, 2)
-print("Linked list after insertion:")
-myLinkedList.printList()
-myLinkedList.insert(0, 9)
-print("Linked list after insertion at beginning:")
-myLinkedList.printList()
-myLinkedList.insert(4, 5)
-print("Linked list after insertion at end:")
-myLinkedList.printList()
-myLinkedList.insert(10, 11)
-print("Linked list after insertion out of range:")
+myLinkedList.remove(1)
+print("Linked list after removal: ")
 myLinkedList.printList()
