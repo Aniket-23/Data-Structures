@@ -40,24 +40,21 @@ class LinkedList:
         else:
             print("Linked list is empty")
 
-    def pop(self) -> None:
-        if self.head is None:
-            print("Linked list empty. Nothing to pop")
-        elif self.head == self.tail:
-            print(f"{self.head.value} is popped")
+    def pop(self):
+        if self.length == 0:
+            return None
+        temp = self.head
+        pre = self.head
+        while(temp.next):
+            pre = temp
+            temp = temp.next
+        self.tail = pre
+        self.tail.next = None
+        self.length -= 1
+        if self.length == 0:
             self.head = None
             self.tail = None
-            self.length = 0
-        else:
-            temp = self.head
-            pre = self.head
-            while(temp.next):
-                pre = temp
-                temp = temp.next
-            self.tail = pre
-            self.tail.next = None
-            self.length -= 1
-            print(f"{temp.value} is popped")
+        return temp
             
     def prepend(self, value):
         newNode = Node(value)
