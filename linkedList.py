@@ -83,7 +83,7 @@ class LinkedList:
         self.length-=1
 
     def get(self, index):
-        if index <= 0 or index >= self.length:
+        if index < 0 or index >= self.length:
             return None
         temp = self.head
         for i in range(index):
@@ -96,11 +96,35 @@ class LinkedList:
             temp.value = value
             return True
         return False
+    
+    def insert(self, index, value):
+        if index<0 or index>self.length:
+            return False
+        elif index==0:
+            return self.prepend(value)
+        elif index==self.length:
+            return self.append(value)
+        newNode=Node(value)
+        temp=self.get(index-1)
+        newNode.next=temp.next
+        temp.next=newNode
+        self.length+=1
+        return True
 
 myLinkedList = LinkedList(1)
-myLinkedList.append(2)
 myLinkedList.append(3)
-myLinkedList.append(4)
-myLinkedList.append(5)
-myLinkedList.set_value(1, 10)
+
+print("Linked list before insertion:")
+myLinkedList.printList()
+myLinkedList.insert(1, 2)
+print("Linked list after insertion:")
+myLinkedList.printList()
+myLinkedList.insert(0, 9)
+print("Linked list after insertion at beginning:")
+myLinkedList.printList()
+myLinkedList.insert(4, 5)
+print("Linked list after insertion at end:")
+myLinkedList.printList()
+myLinkedList.insert(10, 11)
+print("Linked list after insertion out of range:")
 myLinkedList.printList()
