@@ -43,7 +43,17 @@ class DoublyLinkedList:
             temp.prev = None
         self.length -= 1
         return temp
-
+    
+    def prepend(self, value):
+        newNode = Node(value)
+        if self.length == 0:
+            self.head = newNode
+            self.tail = newNode
+        else:
+            newNode.next = self.head
+            self.head.prev = newNode
+            self.head = newNode
+        return True
 
 myList = DoublyLinkedList(1)
 myList.append(3)
@@ -51,4 +61,6 @@ myList.append(5)
 myList.printList()
 myList.pop()
 myList.pop()
+myList.pop()
+myList.prepend(8)
 myList.printList()
