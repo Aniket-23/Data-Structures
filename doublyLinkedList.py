@@ -68,11 +68,23 @@ class DoublyLinkedList:
             self.head.prev = None
         self.length -= 1
         return temp
+    
+    def get(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        else:
+            if index < self.length/2:
+                temp = self.head
+                for _ in range(index):
+                    temp = temp.next
+            else:
+                temp = self.tail
+                for _ in range(self.length-1, index, -1):
+                    temp = temp.prev
+            return temp.value
 
 myList = DoublyLinkedList(1)
 myList.append(3)
 myList.append(5)
 myList.printList()
-myList.popFirst()
-myList.popFirst()
-myList.printList()
+print(myList.get(2))
