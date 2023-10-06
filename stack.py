@@ -24,9 +24,20 @@ class Stack:
             self.top = newNode
         self.height += 1
 
+    def pop(self):
+        if self.height == 0:
+            return None
+        temp = self.top
+        self.top = self.top.next
+        temp.next = None
+        self.height -= 1
+        return temp
+
 
 
 stack  = Stack(10)
 stack.push(5)
 stack.push(1)
+stack.printStack()
+print(f"Popped value: {stack.pop().value}")
 stack.printStack()
